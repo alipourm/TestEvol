@@ -40,6 +40,7 @@ public class DataAnalysis {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+
 		// TODO Better arguments' parsing
 		if (args.length < 4) {
 			System.err

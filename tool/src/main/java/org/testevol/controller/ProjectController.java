@@ -94,7 +94,7 @@ public class ProjectController {
 				projectModel.getVersionsToExecute(), principal.getName());
 		final Project project = execution.getProject();
 
-		final List<Version> versionsToExecute = new ArrayList<Version>();
+		final List<Versi on> versionsToExecute = new ArrayList<Version>();
 		for (Version version : project.getVersionsList()) {
 			if (projectModel.getVersionsToExecute().contains(version.getName())) {
 				version.setBaseBuildDir(execution.getExecutionDir());

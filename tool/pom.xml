@@ -3,9 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.testevol</groupId>
 	<artifactId>testevol</artifactId>
-	<packaging>war</packaging>
+	<!--<packaging>war</packaging>-->
 	<version>0.0.1-SNAPSHOT</version>
-	<name>testevol-web Maven Webapp</name>
+	<name>testevol-web </name>
 	<url>http://maven.apache.org</url>
 	<repositories>
 		<repository>
@@ -20,6 +20,21 @@
 			<id>Java.Net</id>
 			<url>http://download.java.net/maven/2/</url>
 		</repository>
+		<!--<repository>-->
+			<!--<id>Java.Net</id>-->
+			<!--<url>http://download.java.net/maven/2/</url>-->
+		<!--</repository>-->
+
+		<repository>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>https://repo.maven.apache.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
 	</repositories>
 	<properties>
 		<spring.version>3.1.2.RELEASE</spring.version>
@@ -152,31 +167,39 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.4</version>
 		</dependency>
+		<!--&lt;!&ndash; https://mvnrepository.com/artifact/org.apache.maven/maven-core &ndash;&gt;-->
+		<!--<dependency>-->
+			<!--<groupId>org.apache.maven</groupId>-->
+			<!--<artifactId>maven-core</artifactId>-->
+			<!--<version>3.6.1</version>-->
+		<!--</dependency>-->
+
+
 	</dependencies>
 	<build>
 		<finalName>testevol</finalName>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat6-maven-plugin</artifactId>
-				<version>2.0-beta-1</version>
-				<configuration>
-					<port>8081</port>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.0-beta-1</version>
-			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>org.apache.maven.plugins</groupId>-->
+				<!--<artifactId>maven-compiler-plugin</artifactId>-->
+				<!--<configuration>-->
+					<!--<source>1.8</source>-->
+					<!--<target>1.8</target>-->
+				<!--</configuration>-->
+			<!--</plugin>-->
+			<!--<plugin>-->
+				<!--<groupId>org.apache.tomcat.maven</groupId>-->
+				<!--<artifactId>tomcat6-maven-plugin</artifactId>-->
+				<!--<version>2.0-beta-1</version>-->
+				<!--<configuration>-->
+					<!--<port>8081</port>-->
+				<!--</configuration>-->
+			<!--</plugin>-->
+			<!--<plugin>-->
+				<!--<groupId>org.apache.tomcat.maven</groupId>-->
+				<!--<artifactId>tomcat7-maven-plugin</artifactId>-->
+				<!--<version>2.0-beta-1</version>-->
+			<!--</plugin>-->
 		</plugins>
 	</build>
 </project>
