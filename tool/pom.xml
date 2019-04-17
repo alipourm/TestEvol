@@ -65,6 +65,15 @@
 			<version>${spring.version}</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<!--<dependency>-->
+			<!--<groupId>junit</groupId>-->
+			<!--<artifactId>junit</artifactId>-->
+			<!--<version>4.4</version>-->
+			<!--<scope>test</scope>-->
+		<!--</dependency>-->
+
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
@@ -178,8 +187,19 @@
 	</dependencies>
 	<build>
 		<finalName>testevol</finalName>
-		<plugins>
-			<!--<plugin>-->
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <show>private</show>
+                    <nohelp>true</nohelp>
+                </configuration>
+            </plugin>
+
+            <!--<plugin>-->
 				<!--<groupId>org.apache.maven.plugins</groupId>-->
 				<!--<artifactId>maven-compiler-plugin</artifactId>-->
 				<!--<configuration>-->
@@ -202,4 +222,17 @@
 			<!--</plugin>-->
 		</plugins>
 	</build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <stylesheetfile>${basedir}/src/main/javadoc/stylesheet.css</stylesheetfile>
+                    <show>public</show>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>

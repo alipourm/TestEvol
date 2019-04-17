@@ -434,7 +434,7 @@ public class Version {
 	}
 
 	public boolean setUp(File configDir) throws Exception {
-		System.out.println("######################");
+		//System.out.println("######################");
 		boolean result = true;
 
 		File buildDir = getBuildDir();

@@ -13,9 +13,9 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Repository;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Value;
+//import org.springframework.stereotype.Repository;
 import org.testevol.domain.Project;
 import org.testevol.domain.ProjectRepository;
 import org.testevol.domain.Version;
@@ -26,7 +26,6 @@ import org.testevol.engine.util.Utils;
 import org.testevol.versioncontrol.UpdateResult;
 import org.testevol.versioncontrol.VersionControlSystem;
 
-@Repository
 public class ProjectRepoFileSystem implements ProjectRepository {
 
 	private static final String EXECUTION_PROPERTIES = "execution.properties";
@@ -34,15 +33,24 @@ public class ProjectRepoFileSystem implements ProjectRepository {
 	
 	private File projectsDir = null;
 	
-	@Autowired
-	public ProjectRepoFileSystem(@Value("#{testEvolProperties.projects_dir}") String dir) {
+//	@Autowired
+//	public ProjectRepoFileSystem(@Value("#{testEvolProperties.projects_dir}") String dir) {
+//		projectsDir = new File(dir);
+//		if (!projectsDir.exists()) {
+//			projectsDir.mkdirs();
+//		}
+//
+//	}
+
+	public ProjectRepoFileSystem(String dir) {
 		projectsDir = new File(dir);
 		if (!projectsDir.exists()) {
 			projectsDir.mkdirs();
 		}
 
 	}
-	
+
+
 	private File getProjectsDir(String user) throws IOException{
 		File userDir = new File(projectsDir, user);
 		if(!userDir.exists()){
@@ -97,13 +105,13 @@ public class ProjectRepoFileSystem implements ProjectRepository {
 				versions.add(version);
 			}
 		}
-		Collections.sort(versions, new Comparator<Version>() {
-			@Override
-			public int compare(Version version1, Version version2) {
-				return new Integer(version1.getIndex()).compareTo(version2.getIndex());
-
-			}
-		});
+//		Collections.sort(versions, new Comparator<Version>() {
+//			@Override
+//			public int compare(Version version1, Version version2) {
+//				return new Integer(version1.getIndex()).compareTo(version2.getIndex());
+//
+//			}
+//		});
 		
 		if(master!= null){
 			versions.add(0, master);
@@ -155,7 +163,6 @@ public class ProjectRepoFileSystem implements ProjectRepository {
 		return version.updateLocalFilesFromRepository();
 	}
 
-	@Override
 	public Execution createExecution(String projectName, List<String> versionsToExecute, String user) throws Exception {
 		File reportDir = null;
 		try{
@@ -188,7 +195,6 @@ public class ProjectRepoFileSystem implements ProjectRepository {
 		}
 	}
 
-	@Override
 	public Execution getExecution(String projectName, String executionId, String user) throws Exception {
 		Project project = getProject(projectName, user);
 		File executionDir = getExecutionDir(projectName, executionId,user);
@@ -209,7 +215,6 @@ public class ProjectRepoFileSystem implements ProjectRepository {
 		return new File(executions,executionId);
 	}
 	
-	@Override
 	public void saveExecution(String projectName, String executionId, String name, ExecutionStatus status, String user) throws Exception {
 		Execution execution = getExecution(projectName, executionId, user);
 		if(name != null){
@@ -222,7 +227,6 @@ public class ProjectRepoFileSystem implements ProjectRepository {
 		execution.saveProperties(new File(execution.getExecutionDir(), EXECUTION_PROPERTIES));
 	}
 
-	@Override
 	public List<Execution> getExecutions(Project project, String user) throws Exception {
 		File projectDir = new File(getProjectsDir(user),project.getName());
 		File executionsDir = new File(projectDir, EXECUTIONS_DIR);
@@ -237,17 +241,16 @@ public class ProjectRepoFileSystem implements ProjectRepository {
 			}
 		}
 		
-		Collections.sort(executions, new Comparator<Execution>() {
-			@Override
-			public int compare(Execution execution1, Execution execution2) {
-				return execution2.getCreatedAt().compareTo(execution1.getCreatedAt());//want list in descendant order!
-			}
-		});
+//		Collections.sort(executions, new Comparator<Execution>() {
+//			@Override
+//			public int compare(Execution execution1, Execution execution2) {
+//				return execution2.getCreatedAt().compareTo(execution1.getCreatedAt());//want list in descendant order!
+//			}
+//		});
 		
 		return executions;
 	}
 
-	@Override
 	public void deleteExecution(String projectName, String id, String user) throws IOException {
 		File projectDir = new File(getProjectsDir(user), projectName);
 		File executionsDir = new File(projectDir, EXECUTIONS_DIR);
@@ -256,13 +259,11 @@ public class ProjectRepoFileSystem implements ProjectRepository {
 		FileUtils.deleteDirectory(executionDir);		
 	}
 
-	@Override
 	public List<String> getProjectsNames(String user) throws Exception {
 		return Arrays.asList(getProjectsDir(user).list());
 	
 	}
 
-	@Override
 	public void updateVersionSettings(VersionSettings versionSettings, String user) throws Exception {
 		File projectDir = new File(getProjectsDir(user), versionSettings.getProject());
 		File versionDir = new File(projectDir, versionSettings.getVersion());

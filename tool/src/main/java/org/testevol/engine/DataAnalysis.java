@@ -25,8 +25,10 @@ public class DataAnalysis {
 	private File executionFolder;
 	private boolean skipCoverageAnalysis;
 
-	public DataAnalysis(String testevolConfigRoot, Project project,
-			List<Version> versions, File executionFolder,
+	public DataAnalysis(String testevolConfigRoot,
+						Project project,
+			            List<Version> versions,
+                        File executionFolder,
 			boolean skipCoverageAnalysis) {
 		super();
 		this.testevolConfigRoot = testevolConfigRoot;
