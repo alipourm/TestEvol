@@ -46,6 +46,7 @@ public class Version {
 		super();
 		this.versionDir = versionDir;
 		name = versionDir.getName();
+		System.out.println("version name "+name);
 		properties = new Properties();
 		if (getPropertiesFile().exists()) {
 			properties.load(new FileInputStream(getPropertiesFile()));
@@ -189,6 +190,7 @@ public class Version {
 	}
 
 	public int getIndex() {
+	    System.out.println("size of properties " + properties.size());
 		return Integer.parseInt(properties.getProperty("index"));
 	}
 

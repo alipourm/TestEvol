@@ -194,7 +194,7 @@ public class TestRunner {
 			if (isTimeoutEnabled()) {
 				FutureTask<TestResult> execMethodTask = new FutureTask<TestResult>(
 						new Callable<TestResult>() {
-							@Override
+							//@Override
 							public TestResult call()
 									throws Exception {
 								TestResult res = runTest(clazz,method,obj);
