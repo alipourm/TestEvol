@@ -43,7 +43,7 @@ public class Version {
 	private VersionSettings versionSettings;
 
 	public Version(File versionDir) throws Exception {
-		super();
+	//	super();
 		this.versionDir = versionDir;
 		name = versionDir.getName();
 		System.out.println("version name "+name);
@@ -129,7 +129,7 @@ public class Version {
 				testEvolProperties.load(new FileInputStream(testEvolConfig));
 			} catch (Exception e) {
 				// file does not exist
-				// e.printStackTrace();
+				//e.printStackTrace();
 			}
 		}
 		return testEvolProperties;

@@ -86,7 +86,8 @@ public class ProjectRepoFileSystem implements ProjectRepository {
 	}
 
 	public Project getProject(String projectName, String user) throws Exception{
-		File f = new File(getProjectsDir(user),projectName);
+//		File f = new File(getProjectsDir(user),projectName);
+		File f = new File(projectName);
 		Project project = new Project();
 		project.setName(projectName);
 		File[] files = f.listFiles();

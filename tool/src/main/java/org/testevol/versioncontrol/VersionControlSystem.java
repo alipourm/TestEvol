@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import org.testevol.domain.RepositoryInfo;
+import org.testevol.domain.Version;
 
 public abstract class VersionControlSystem {
 	
@@ -26,7 +27,7 @@ public abstract class VersionControlSystem {
 	}
 	
 	public abstract List<String> getBranches() throws Exception;	
-	public abstract void checkout(File destinationDir, List<String> branchesToClone) throws Exception;
+	public abstract List<Version> checkout(File destinationDir, List<String> branchesToClone) throws Exception;
 	public abstract UpdateResult update() throws Exception;
 
 	

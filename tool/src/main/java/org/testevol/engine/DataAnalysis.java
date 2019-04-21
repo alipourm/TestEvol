@@ -12,6 +12,8 @@ import org.testevol.domain.Project;
 import org.testevol.domain.Version;
 import org.testevol.engine.domain.TestEvolLog;
 
+import org.apache.commons.cli.*;
+
 /**
  * @author orso
  * @author leandro
@@ -42,19 +44,38 @@ public class DataAnalysis {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+//
+//		// TODO Better arguments' parsing
+//		if (args.length < 4) {
+//			System.err
+//					.println("Usage: DataAnalysis <tool root> <subject root> <version dirs regexp> <force rerun (true|false|clean)");
+//			System.exit(-1);
+//		}
+//		String toolroot = args[0];
+//		String subjroot = args[1];
+//		String regexpVersionNames = args[2];
+//
+//		String projectName = System.getProperty("project.name");
+//		System.exit(0);
+	Options options = new Options();
+	Option pathOption = new Option("p", "path",true,"project path");
+	options.addOption(pathOption);
+	pathOption.isRequired();
 
-		// TODO Better arguments' parsing
-		if (args.length < 4) {
-			System.err
-					.println("Usage: DataAnalysis <tool root> <subject root> <version dirs regexp> <force rerun (true|false|clean)");
-			System.exit(-1);
-		}
-		String toolroot = args[0];
-		String subjroot = args[1];
-		String regexpVersionNames = args[2];
+	Parser parser  = new BasicParser();
+	try{
 
-		String projectName = System.getProperty("project.name");
-		System.exit(0);
+		 CommandLine cmd = parser.parse(options, args);
+		 String projectPath = cmd.getOptionValue("p");
+
+	}
+	catch (ParseException e){
+
+	}
+
+
+	DataAnalysis da = new DataAnalysis(null, null, null, null, true);
+
 	}
 
 	public void start() throws Exception {
@@ -72,6 +93,7 @@ public class DataAnalysis {
 				version.setDirectory(versionCopy);
 				log.log("Setting up version " + version.getName());
 				if(!version.setUp(new File(testevolConfigRoot))){
+				    System.err.println(version.getName());
 					log.logError("Error while setting up version "+version.getName());
 					throw new RuntimeException();
 				}

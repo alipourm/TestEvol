@@ -67,9 +67,10 @@ public class GitImpl extends VersionControlSystem {
 	}
 
 	@Override
-	public void checkout(File destinationDir, List<String> branchesToClone)
+	public List<Version> checkout(File destinationDir, List<String> branchesToClone)
 			throws Exception {
 		File dir = Utils.getTempDir();
+		List<Version> versionList = new ArrayList<Version>();
 		try {
 			int branchIndex=0;
 			CredentialsProvider credentialsProvider = null;
@@ -98,6 +99,7 @@ public class GitImpl extends VersionControlSystem {
 				FileUtils.copyDirectory(dir, versionDir);
 
 				Version version = new Version(versionDir);
+				versionList.add(version);
 				version.setIndex(branchIndex);
 				version.saveProperties();
 				if(branchIndex != -1){
@@ -110,6 +112,7 @@ public class GitImpl extends VersionControlSystem {
 				FileUtils.deleteDirectory(dir);
 			}
 		}
+		return versionList;
 	}
 
 	private void deleteDirContents(File dir) throws IOException{

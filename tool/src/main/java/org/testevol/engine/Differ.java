@@ -63,17 +63,6 @@ public class Differ extends Task {
             
             testDifferencers.put(versionPair, javaDiffTests);
             codeDifferencers.put(versionPair, javaDiffCode);
-            
-//            Classifier classifier = new Classifier(oldVersion, version, javaDiffTests);
-//            
-//            
-//
-//            Results results = classifier.classify();
-//            searchClones(oldVersion, version, results);
-//            
-//            
-//            resultsForEachPair.add(results);
-            
 
             
             oldVersion = version;
